@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,22 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         setContentView(R.layout.activity_main);
         initView();
         initVP();
+        initSlidingMenu();
+    }
+
+    private void initSlidingMenu() {
+        //创建侧滑菜单
+        SlidingMenu slidingmenu = new SlidingMenu(this);
+        //设置菜单从左边滑出
+        slidingmenu.setMode(SlidingMenu.LEFT);
+        //设置全屏可以滑出菜单
+        slidingmenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        //设置侧滑菜单的宽度
+        slidingmenu.setBehindWidth(250);
+        //把侧滑菜单附加在Activity里面
+        slidingmenu.attachToActivity(this,SlidingMenu.SLIDING_CONTENT);
+        //设置侧滑菜单的布局
+        //slidingmenu.setMenu(R.layout.main_menu);
     }
 
     //初始化控件
