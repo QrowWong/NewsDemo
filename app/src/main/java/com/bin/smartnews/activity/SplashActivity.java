@@ -70,7 +70,7 @@ public class SplashActivity extends Activity implements Animation.AnimationListe
 //            boolean has_guide =  SPUtils.getBoolean(getApplicationContext(), Constant.KEY_HAS_GUIDE,false);
 //            if(has_guide){
 //                //进入主界面
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(),GuideActivity.class);
                 startActivity(intent);
 //            }else{
 //                //进入向导界面
