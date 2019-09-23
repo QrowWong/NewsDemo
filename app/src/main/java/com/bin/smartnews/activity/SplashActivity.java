@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -13,9 +14,11 @@ import android.view.animation.ScaleAnimation;
 import android.widget.RelativeLayout;
 
 import com.bin.smartnews.R;
+import com.bin.smartnews.sp.SPUtils;
 
 public class SplashActivity extends Activity implements Animation.AnimationListener {
 
+    private static final String TAG = "SplashActivity";
     private Handler mHandler = new Handler();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,16 +70,17 @@ public class SplashActivity extends Activity implements Animation.AnimationListe
     private class MyTask implements Runnable {
         @Override
         public void run() {
-//            boolean has_guide =  SPUtils.getBoolean(getApplicationContext(), Constant.KEY_HAS_GUIDE,false);
-//            if(has_guide){
-//                //进入主界面
+            boolean has_guide =  SPUtils.getBoolean(getApplicationContext(), "KEY_HAS_GUIDE",false);
+            Log.i(TAG, "has_guide: "+has_guide);
+            if(has_guide){
+                //进入主界面
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
+            }else{
+                //进入向导界面
                 Intent intent = new Intent(getApplicationContext(),GuideActivity.class);
                 startActivity(intent);
-//            }else{
-//                //进入向导界面
-//                Intent intent = new Intent(getApplicationContext(),GuideActivity.class);
-//                startActivity(intent);
-//            }
+            }
             finish();
         }
     }

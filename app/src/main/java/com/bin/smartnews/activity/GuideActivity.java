@@ -3,6 +3,7 @@ package com.bin.smartnews.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.SyncStateContract;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.widget.RelativeLayout;
 
 import com.bin.smartnews.R;
 import com.bin.smartnews.adapter.GuideVPAdapter;
+import com.bin.smartnews.sp.SPUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +74,7 @@ public class GuideActivity extends Activity implements ViewPager.OnPageChangeLis
         btStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SPUtils.saveBoolean(getApplicationContext(), "KEY_HAS_GUIDE",true);
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(intent);
                 finish();
