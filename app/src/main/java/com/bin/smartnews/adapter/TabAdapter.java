@@ -1,4 +1,4 @@
-package com.bin.smartnews;
+package com.bin.smartnews.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

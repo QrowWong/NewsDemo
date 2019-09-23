@@ -1,4 +1,4 @@
-package com.bin.smartnews;
+package com.bin.smartnews.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,13 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class HomeTabFragment extends Fragment {
+public class GovaffairsTabFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         TextView tv = new TextView(getContext());
         tv.setTextSize(20);
-        tv.setText("首页");
+        tv.setText("政务");
         tv.setTextColor(Color.RED);
         tv.setGravity(Gravity.CENTER);
         return tv;

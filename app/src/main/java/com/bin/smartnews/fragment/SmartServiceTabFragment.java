@@ -1,4 +1,4 @@
-package com.bin.smartnews;
+package com.bin.smartnews.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;

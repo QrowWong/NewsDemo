@@ -1,4 +1,4 @@
-package com.bin.smartnews;
+package com.bin.smartnews.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,6 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.bin.smartnews.fragment.GovaffairsTabFragment;
+import com.bin.smartnews.fragment.HomeTabFragment;
+import com.bin.smartnews.fragment.NewsCenterTabFragment;
+import com.bin.smartnews.R;
+import com.bin.smartnews.fragment.SettingTabFragment;
+import com.bin.smartnews.fragment.SmartServiceTabFragment;
+import com.bin.smartnews.adapter.TabAdapter;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import java.util.ArrayList;
