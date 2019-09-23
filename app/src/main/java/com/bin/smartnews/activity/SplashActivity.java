@@ -86,5 +86,3 @@ public class SplashActivity extends Activity implements Animation.AnimationListe
     }
 
 }
-//    }
-//}
