@@ -1,4 +1,4 @@
-package com.bin.smartnews.sp;
+package com.bin.smartnews.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

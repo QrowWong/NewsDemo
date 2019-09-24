@@ -3,7 +3,6 @@ package com.bin.smartnews.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.SyncStateContract;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -16,7 +15,8 @@ import android.widget.RelativeLayout;
 
 import com.bin.smartnews.R;
 import com.bin.smartnews.adapter.GuideVPAdapter;
-import com.bin.smartnews.sp.SPUtils;
+import com.bin.smartnews.utils.Constant;
+import com.bin.smartnews.utils.SPUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class GuideActivity extends Activity implements ViewPager.OnPageChangeLis
     private static final String TAG = "GuideActivity";
     private ViewPager vp;
     //向导图片
-    private int[] imgs = new int[]{R.drawable.setting, R.drawable.setting_press, R.drawable.smartservice_press};
+    private int[] imgs = new int[]{R.drawable.guide_1, R.drawable.guide_2, R.drawable.guide_3};
     private Button btStart;
     private LinearLayout containerGrayPoint;
     //小灰点之间的宽度
@@ -49,7 +49,7 @@ public class GuideActivity extends Activity implements ViewPager.OnPageChangeLis
         initViewPager();
         initGrayPoint();
     }
-
+//-----------------------引导页面下方灰点 ----------------------//
     private void initGrayPoint() {
         for (int resId : imgs) {
             View view = new View(this);
@@ -74,7 +74,7 @@ public class GuideActivity extends Activity implements ViewPager.OnPageChangeLis
         btStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SPUtils.saveBoolean(getApplicationContext(), "KEY_HAS_GUIDE",true);
+                SPUtils.saveBoolean(getApplicationContext(), Constant.KEY_HAS_GUIDE,true);
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -110,6 +110,7 @@ public class GuideActivity extends Activity implements ViewPager.OnPageChangeLis
 
     @Override
     public void onPageSelected(int position) {
+        //最后一页
         if (position == imgs.length - 1) {
             //显示按钮
             btStart.setVisibility(View.VISIBLE);
