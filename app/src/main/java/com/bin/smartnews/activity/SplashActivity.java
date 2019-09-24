@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 
 import com.bin.smartnews.R;
 import com.bin.smartnews.utils.Constant;
+import com.bin.smartnews.utils.DebugLog;
 import com.bin.smartnews.utils.SPUtils;
 
 public class SplashActivity extends Activity implements Animation.AnimationListener {
@@ -72,7 +73,7 @@ public class SplashActivity extends Activity implements Animation.AnimationListe
         @Override
         public void run() {
             boolean has_guide =  SPUtils.getBoolean(getApplicationContext(), Constant.KEY_HAS_GUIDE,false);
-            Log.i(TAG, "has_guide: "+has_guide);
+            DebugLog.i(TAG, "has_guide: "+has_guide);
 //            if(has_guide){
 //                //进入主界面
 //                Intent intent = new Intent(getApplicationContext(),MainActivity.class);

@@ -5,5 +5,5 @@ package com.bin.smartnews.base;
  */
 public interface BaseLoadNetDataOperator {
     //联网获取数据
-    public void loadNetData(String url);
+    public void loadNetData();
 }

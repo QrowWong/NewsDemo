@@ -9,6 +9,9 @@ import android.view.WindowManager;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.bin.smartnews.base.BaseFragment;
+import com.bin.smartnews.base.BaseLoadNetDataOperator;
+import com.bin.smartnews.bean.NewsCenterBean;
 import com.bin.smartnews.fragment.GovaffairsTabFragment;
 import com.bin.smartnews.fragment.HomeTabFragment;
 import com.bin.smartnews.fragment.NewsCenterTabFragment;
@@ -22,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends FragmentActivity implements RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener {
-
+    private static final String TAG = "MainActivity";
     private ViewPager vp;
     private List<Fragment> fragments;
     private RadioButton rb_newscenter;
@@ -32,6 +35,12 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
     private RadioButton rb_home;
     private SlidingMenu slidingMenu;
 
+    //侧滑菜单的数据
+    private List<NewsCenterBean.NewsCenterMenuBean> newsCenterMenuBeanList;
+
+    public void setNewsCenterMenuBeanList(List<NewsCenterBean.NewsCenterMenuBean> newsCenterMenuBeanList) {
+        this.newsCenterMenuBeanList = newsCenterMenuBeanList;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +64,9 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
         //设置侧滑菜单的布局
         slidingMenu.setMenu(R.layout.activity_main_menu);
     }
-
+    public SlidingMenu getSlidingMenu(){
+        return slidingMenu;
+    }
     //初始化控件
     private void initView() {
         vp = findViewById(R.id.vp);
@@ -116,8 +127,13 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
         }
             //ViewPager切换到对应的页面
             vp.setCurrentItem(item,false);//false 不需要Viewpager页面切换的时候有滑动的动画
-
+        //加载网络数据的入口
+        BaseFragment baseFragment = (BaseFragment) fragments.get(item);
+        if(baseFragment instanceof BaseLoadNetDataOperator){
+            ((BaseLoadNetDataOperator) baseFragment).loadNetData();
         }
+
+    }
 
     @Override
     public void onPageScrolled(int i, float v, int i1) {

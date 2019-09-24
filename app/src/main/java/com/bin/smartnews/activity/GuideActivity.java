@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import com.bin.smartnews.R;
 import com.bin.smartnews.adapter.GuideVPAdapter;
 import com.bin.smartnews.utils.Constant;
+import com.bin.smartnews.utils.DebugLog;
 import com.bin.smartnews.utils.SPUtils;
 
 import java.util.ArrayList;
@@ -71,6 +72,7 @@ public class GuideActivity extends Activity implements ViewPager.OnPageChangeLis
         vp.setAdapter(new GuideVPAdapter(views));
         //设置页面的滑动监听
         vp.addOnPageChangeListener(this);
+        //按钮点击监听
         btStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,14 +93,14 @@ public class GuideActivity extends Activity implements ViewPager.OnPageChangeLis
      */
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        Log.i(TAG,"position:"+position+",positionOffset:"+positionOffset
+        DebugLog.i(TAG,"position:"+position+",positionOffset:"+positionOffset
                 +",positionOffsetPixels:"+positionOffsetPixels);
 
         if(width == 0){
             width = containerGrayPoint
                     .getChildAt(1)
                     .getLeft() - containerGrayPoint.getChildAt(0).getLeft();
-            Log.i(TAG,"width:"+width);
+            DebugLog.i(TAG,"width:"+width);
         }
         //修改小红点与相对布局的左边距
         //根据当前的ViewPager移动的索引*小红点移动的距离 + 小红点移动距离 * 滑动百分比

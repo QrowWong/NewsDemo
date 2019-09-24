@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bin.smartnews.R;
+import com.bin.smartnews.activity.MainActivity;
 
 public abstract class BaseFragment extends Fragment {
 
@@ -24,12 +25,16 @@ public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //实例化一般是由类创建的对象，在构造一个实例的时候需要在内存中开辟空间，
+        // 即   Student   s = new Student();
+        //初始化   实例化的基础上，并且对 对象中的值进行赋一下初始值
+        //此处用inflate方法自己实例化一个view
         View view = inflater.inflate(R.layout.fragment_tab_base, container, false);
-        //在Fragment中需要使用
-        ibMenu = getView().findViewById(R.id.ib_menu);
-        ibPicType = getView().findViewById(R.id.ib_pic_type);
-        tvTitle = getView().findViewById(R.id.tv_title);
-        containers = getView().findViewById(R.id.container);
+        //在Fragment中需要使用getView().find...但是已经实例化过view所以直接用
+        ibMenu = view.findViewById(R.id.ib_menu);
+        ibPicType = view.findViewById(R.id.ib_pic_type);
+        tvTitle = view.findViewById(R.id.tv_title);
+        containers = view.findViewById(R.id.container);
         return view;
     }
 
@@ -42,6 +47,16 @@ public abstract class BaseFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initTitle();
+        ibMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //对于侧滑菜单进行切换
+                //目标：获取SlidingMenu -->MainActivity
+                //错误: slidingMenu 在 MainActivity 中是 private 访问控制
+            //((MainActivity)getActivity()).slidingMenu.toggle();
+                ((MainActivity)getActivity()).getSlidingMenu().toggle();
+            }
+        });
     }
 
     //初始化标题   让每个子类去进行实现
