@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private RadioButton rb_govaffairs;
     private RadioButton rb_setting;
     private RadioButton rb_home;
+    private SlidingMenu slidingMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,17 +42,17 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 
     private void initSlidingMenu() {
         //创建侧滑菜单
-        SlidingMenu slidingmenu = new SlidingMenu(this);
+        slidingMenu = new SlidingMenu(this);
         //设置菜单从左边滑出
-        slidingmenu.setMode(SlidingMenu.LEFT);
-        //设置全屏可以滑出菜单
-        slidingmenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        slidingMenu.setMode(SlidingMenu.LEFT);
+        //设置全屏是否可以滑出菜单
+        slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
         //设置侧滑菜单的宽度
-        slidingmenu.setBehindWidth(250);
+        slidingMenu.setBehindWidth(250);
         //把侧滑菜单附加在Activity里面
-        slidingmenu.attachToActivity(this,SlidingMenu.SLIDING_CONTENT);
+        slidingMenu.attachToActivity(this,SlidingMenu.SLIDING_CONTENT);
         //设置侧滑菜单的布局
-        //slidingmenu.setMenu(R.layout.main_menu);
+        slidingMenu.setMenu(R.layout.activity_main_menu);
     }
 
     //初始化控件
@@ -82,7 +83,9 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         vp.addOnPageChangeListener(this);
 
     }
-
+    //点击底部tab切换到对应的Fragment
+    //radioGroup添加选中的监听，并记录选中的radiobutton的索引
+    //然后，将记录的索引，传递给ViewPager，让ViewPager进行切换到对应Fragment界面
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         int item = 0;
@@ -90,17 +93,23 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
             //根据相对应的ID赋值，用以切换相应界面
             case R.id.rb_home:
                 item = 0;
+                //设置无法划出侧滑菜单
+                slidingMenu.setTouchModeAbove(slidingMenu.TOUCHMODE_NONE);
                 break;
             case R.id.rb_newscenter:
                 item = 1;
+                slidingMenu.setTouchModeAbove(slidingMenu.TOUCHMODE_FULLSCREEN);
                 break;
             case R.id.rb_smartservice:
                 item = 2;
+                slidingMenu.setTouchModeAbove(slidingMenu.TOUCHMODE_FULLSCREEN);
                 break;
             case R.id.rb_govaffairs:
                 item = 3;
+                slidingMenu.setTouchModeAbove(slidingMenu.TOUCHMODE_FULLSCREEN);
                 break;
             case R.id.rb_setting:
+                slidingMenu.setTouchModeAbove(slidingMenu.TOUCHMODE_NONE);
                 item = 4;
                 break;
         }
@@ -114,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 
     }
 
+    //滑动切换下方tab跟着切换
     //实现ViewPager滑动监听的回调方法，监听滑动事件，在onPageSelected方法中，
     //根据选中的index，切换底部的tab。
 
