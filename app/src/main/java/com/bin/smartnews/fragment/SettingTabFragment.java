@@ -11,15 +11,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class SettingTabFragment extends Fragment {
-    @Nullable
+import com.bin.smartnews.base.BaseFragment;
+
+public class SettingTabFragment extends BaseFragment {
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        TextView tv = new TextView(getContext());
-        tv.setTextSize(20);
-        tv.setText("设置");
-        tv.setTextColor(Color.RED);
-        tv.setGravity(Gravity.CENTER);
-        return tv;
+    public void initTitle() {
+        setIbMenuDisplayState(false);
+        setIbPicTypeDisplayState(false);
+        setTitle("设置");
+    }
+
+    @Override
+    public View createContent() {
+        return null;
     }
 }

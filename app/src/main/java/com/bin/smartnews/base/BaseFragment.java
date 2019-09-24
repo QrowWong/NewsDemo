@@ -33,6 +33,11 @@ public abstract class BaseFragment extends Fragment {
         return view;
     }
 
+    /**
+     * onCreate是指创建该fragment，类似于Activity.onCreate，你可以在其中初始化除了view之外的东西。
+     * onCreateView是创建该fragment对应的视图，你必须在这里创建自己的视图并返回给调用者。
+     * onViewCreated在onCreateView执行完后立即执行
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
